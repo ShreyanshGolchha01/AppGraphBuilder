@@ -10,12 +10,12 @@ export const RightPanel = () => {
   return (
     <>
       {/* Desktop version */}
-      <div className="hidden md:flex w-96 bg-black border-l border-gray-800 flex-col">
-        <div className="flex-1 overflow-hidden">
+      <div className="hidden md:flex w-96 bg-black border-l border-gray-800 flex-col h-full">
+        <div className={selectedNodeId ? "h-1/2 overflow-hidden border-b border-gray-800" : "flex-1 overflow-hidden"}>
           <AppsList />
         </div>
         {selectedNodeId && (
-          <div className="flex-1 border-t border-gray-800 overflow-hidden">
+          <div className="h-1/2 overflow-hidden">
             <NodeInspector />
           </div>
         )}
@@ -28,8 +28,8 @@ export const RightPanel = () => {
             className="absolute inset-0 bg-black/50"
             onClick={() => setIsMobilePanelOpen(false)}
           />
-          <div className="absolute right-0 top-0 bottom-0 w-80 bg-black border-l border-gray-800 flex flex-col animate-in slide-in-from-right">
-            <div className="flex items-center justify-between p-4 border-b border-gray-800">
+          <div className="absolute right-0 top-0 bottom-0 w-80 sm:w-96 max-w-[90vw] bg-black border-l border-gray-800 flex flex-col animate-in slide-in-from-right">
+            <div className="flex items-center justify-between p-4 border-b border-gray-800 flex-shrink-0">
               <h2 className="text-white font-semibold">Panel</h2>
               <Button
                 variant="ghost"
@@ -40,11 +40,11 @@ export const RightPanel = () => {
                 <X className="h-5 w-5" />
               </Button>
             </div>
-            <div className="flex-1 overflow-hidden">
+            <div className={selectedNodeId ? "h-1/2 overflow-hidden border-b border-gray-800" : "flex-1 overflow-hidden"}>
               <AppsList />
             </div>
             {selectedNodeId && (
-              <div className="flex-1 border-t border-gray-800 overflow-hidden">
+              <div className="h-1/2 overflow-hidden">
                 <NodeInspector />
               </div>
             )}
