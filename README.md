@@ -40,9 +40,11 @@ Open `http://localhost:5173`
 2. **ReactFlow Stuff**
    - Drag and drop nodes around
    - Click to select, Delete key to remove
-   - Add Node button creates new service nodes
+   - Add Node button creates new service/database nodes
+   - Different node types with unique styling (Service: blue, Database: emerald)
    - Zoom/pan controls
    - Mini-map in corner
+   - Keyboard shortcuts: F (fit view), P (toggle panel)
 
 3. **Node Inspector**
    - Shows node status (Healthy/Degraded/Down)
@@ -116,10 +118,11 @@ src/
 ## What Works
 
 - Layout with top bar, sidebar, and panel
-- Add/delete nodes
+- Add/delete nodes (Service and Database types)
 - Drag nodes around
 - Click metrics to see different usage bars
-- Edit node properties in inspector
+- Edit node properties in inspector (persists to ReactFlow state)
+- Keyboard shortcuts (F for fit view, P for panel toggle)
 - Mock API with loading states
 - TypeScript + ESLint passing
 
@@ -133,18 +136,18 @@ src/
 ## Known Issues
 
 - Mock data only (resets on refresh)
-- Changes don't persist
-- All nodes are same type
+- Changes don't persist to backend
 - Mobile dragging could be better
+- No undo/redo yet
 
 ## Maybe Add Later
 
-- Different node types (DB, API, etc)
-- Keyboard shortcuts
-- Save to localStorage
-- Undo/redo
-- Export as JSON
-- Better mobile support
+- More node types (API Gateway, Load Balancer, etc)
+- More keyboard shortcuts (Delete: D, Select all: Ctrl+A)
+- Save to localStorage or backend
+- Undo/redo functionality
+- Export/import as JSON
+- Better mobile touch support
 
 ---
 
