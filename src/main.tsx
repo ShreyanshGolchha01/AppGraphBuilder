@@ -7,15 +7,19 @@ import './index.css';
 // Start MSW
 async function enableMocking() {
   // Enable MSW in both development and production for demo purposes
-  // if (process.env.NODE_ENV !== 'development') {
-  //   return;
-  // }
-
-  const { worker } = await import('./mocks/browser');
-
-  return worker.start({
-    onUnhandledRequest: 'bypass',
-  });
+  try {
+    const { worker } = await import('./mocks/browser');
+    
+    return worker.start({
+      onUnhandledRequest: 'bypass',
+      serviceWorker: {
+        url: '/mockServiceWorker.js'
+      }
+    });
+  } catch (error) {
+    console.warn('MSW failed to start:', error);
+    return Promise.resolve();
+  }
 }
 
 const queryClient = new QueryClient({
