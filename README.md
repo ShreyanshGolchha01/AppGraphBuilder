@@ -44,20 +44,31 @@ The application will be available at `http://localhost:5173`
    - 3+ nodes with 2+ edges per graph
    - Drag and drop nodes
    - Click to select nodes
-   - Delete nodes with Delete/Backspace keys
+   - Add new nodes with "Add Node" button
+   - Delete nodes with Delete/Backspace keys or Delete button
+   - Auto-select newly created nodes
    - Zoom and pan controls
    - Fit view on initial load
    - Dotted background pattern
    - Mini-map and controls
 
-3. **Service Node Inspector**
-   - Status pill (Healthy, Degraded, Down)
-   - Two tabs: Config and Runtime
-   - Synced slider and numeric input (0-100)
-   - Editable node name
-   - Description textarea
-   - Real-time metrics display (CPU, Memory, Disk, Region)
-   - Changes persist to node data
+3. **Service Node Components**
+   - **Custom Node Display:**
+     - Status pill (Healthy, Degraded, Down)
+     - Clickable metrics (CPU, Memory, Disk, Region)
+     - Dynamic usage bar that switches based on selected metric
+     - Visual feedback for active metric (blue ring)
+   
+   - **Node Inspector Panel:**
+     - Two tabs: Config and Runtime
+     - Editable node name and description
+     - CPU slider (0-100%)
+     - Memory slider (0-10 GB)
+     - Disk slider (0-1000 GB)
+     - Region slider (1-10)
+     - Synced slider and numeric input for all metrics
+     - Real-time updates to node data
+     - Scrollable content for mobile devices
 
 4. **TanStack Query Integration**
    - Mock API endpoints using MSW
@@ -159,10 +170,12 @@ src/
 
 ## 🎯 Feature Checklist
 
-- ✅ Top bar, left rail, right panel, dotted canvas layout
+- ✅ Top bar with Add Node, Delete, and Fit View buttons
+- ✅ Left rail, right panel, dotted canvas layout
 - ✅ Responsive design (mobile drawer)
-- ✅ ReactFlow: 3 nodes, drag, select, delete, zoom/pan
-- ✅ Node inspector: tabs + status pill + synced slider/input
+- ✅ ReactFlow: 3 nodes, drag, select, add, delete, zoom/pan
+- ✅ Custom service nodes with clickable metrics
+- ✅ Node inspector: 2 tabs + 4 metric sliders + status display
 - ✅ TanStack Query: mock APIs with loading/error states
 - ✅ Zustand: UI state management
 - ✅ TypeScript strict mode + ESLint
@@ -201,9 +214,9 @@ src/
    - Inspector edits update ReactFlow state but don't persist
 
 3. **Graph Complexity**
-   - Limited to predefined graph structures
-   - No "Add Node" functionality (can be added as bonus)
    - No node type variants (all service nodes)
+   - No automatic layout algorithms
+   - No edge labels or custom edge types
 
 4. **Mobile Experience**
    - Node dragging can be challenging on touch devices
@@ -212,13 +225,16 @@ src/
 
 ## 🚀 Future Enhancements
 
-- Add "Add Node" button to create new nodes
-- Implement node type variants (Service vs DB)
-- Add keyboard shortcuts (Fit view: F, Toggle panel: P)
-- Persist graph changes to localStorage
+- Implement node type variants (Service vs Database vs API)
+- Add keyboard shortcuts (Fit view: F, Toggle panel: P, Add node: N)
+- Persist graph changes to localStorage or backend
 - Add undo/redo functionality
 - Export/import graph as JSON
+- Edge labels and custom edge styling
+- Automatic layout algorithms (hierarchical, force-directed)
 - Real-time collaboration features
+- Node templates library
+- Search and filter nodes
 
 ## 📄 License
 
