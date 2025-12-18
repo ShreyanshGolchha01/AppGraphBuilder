@@ -34,6 +34,7 @@ export const NodeInspector = () => {
       setMemoryValue(selectedNode.data.memoryUsage);
       setDiskValue(selectedNode.data.diskUsage);
       setRegionValue(selectedNode.data.regionCount);
+      console.log('selected node:', selectedNode.id); // helps with debugging
     }
   }, [selectedNode]);
 
@@ -143,13 +144,13 @@ export const NodeInspector = () => {
         <TabsList className="w-full justify-start rounded-none bg-black border-b border-gray-800 h-auto p-0 flex-shrink-0">
           <TabsTrigger
             value="config"
-            className="rounded-none data-[state=active]:bg-gray-900 data-[state=active]:border-b-2 data-[state=active]:border-blue-500"
+            className="rounded-none text-white data-[state=active]:text-white data-[state=active]:bg-gray-900 data-[state=active]:border-b-2 data-[state=active]:border-blue-500"
           >
             Config
           </TabsTrigger>
           <TabsTrigger
             value="runtime"
-            className="rounded-none data-[state=active]:bg-gray-900 data-[state=active]:border-b-2 data-[state=active]:border-blue-500"
+            className="rounded-none text-white data-[state=active]:text-white data-[state=active]:bg-gray-900 data-[state=active]:border-b-2 data-[state=active]:border-blue-500"
           >
             Runtime
           </TabsTrigger>

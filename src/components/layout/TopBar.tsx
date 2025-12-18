@@ -18,18 +18,20 @@ export const TopBar = () => {
     }
 
     const newNodeId = `node-${Date.now()}`;
+    const nodeType = Math.random() > 0.5 ? 'service' : 'database';
     const newNode = {
       id: newNodeId,
       type: 'serviceNode',
       position: { x: Math.random() * 400, y: Math.random() * 400 },
       data: {
-        label: 'New Service',
+        label: nodeType === 'service' ? 'New Service' : 'New Database',
         status: 'Healthy' as const,
-        description: 'New service node',
+        description: nodeType === 'service' ? 'New service node' : 'New database node',
         cpuUsage: 0,
         memoryUsage: '0.00 GB',
         diskUsage: '0.00 GB',
         regionCount: 1,
+        nodeType: nodeType,
       },
     };
 

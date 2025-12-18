@@ -8,6 +8,7 @@ export interface NodeData {
   memoryUsage: string;
   diskUsage: string;
   regionCount: number;
+  nodeType?: 'service' | 'database';
 }
 
 export interface AppNode {

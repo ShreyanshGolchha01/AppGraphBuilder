@@ -7,10 +7,13 @@ import type { NodeData, NodeStatus } from '@/types';
 const ServiceNode = ({ data, selected }: NodeProps) => {
   const nodeData = data as unknown as NodeData;
   const [activeMetric, setActiveMetric] = useState<'cpu' | 'memory' | 'disk' | 'region'>('cpu');
+  // TODO: maybe add animation when switching metrics?
+  const isDatabase = nodeData.nodeType === 'database';
+  
   const getStatusColor = (status: NodeStatus) => {
     switch (status) {
       case 'Healthy':
-        return 'border-green-500';
+        return isDatabase ? 'border-emerald-500' : 'border-green-500';
       case 'Degraded':
         return 'border-yellow-500';
       case 'Down':
@@ -92,23 +95,23 @@ const ServiceNode = ({ data, selected }: NodeProps) => {
 
   return (
     <div
-      className={`bg-gray-900 border-2 ${
+      className={`${isDatabase ? 'bg-emerald-950' : 'bg-gray-900'} border-2 ${
         selected ? 'border-blue-500' : getStatusColor(nodeData.status)
       } rounded-lg shadow-xl min-w-[280px]`}
     >
-      <Handle type="target" position={Position.Top} className="w-3 h-3 !bg-blue-500" />
+      <Handle type="target" position={Position.Top} className={`w-3 h-3 ${isDatabase ? '!bg-emerald-500' : '!bg-blue-500'}`} />
       
       <div className="p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gray-800 rounded flex items-center justify-center">
-              <Database className="h-4 w-4 text-gray-400" />
+            <div className={`w-8 h-8 ${isDatabase ? 'bg-emerald-900' : 'bg-gray-800'} rounded flex items-center justify-center`}>
+              <Database className={`h-4 w-4 ${isDatabase ? 'text-emerald-400' : 'text-gray-400'}`} />
             </div>
             <h3 className="text-white font-semibold">{nodeData.label}</h3>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-green-400 text-sm font-mono">$0.03/HR</span>
+            <span className={`${isDatabase ? 'text-emerald-400' : 'text-green-400'} text-sm font-mono`}>$0.03/HR</span>
             <Settings className="h-4 w-4 text-gray-400 cursor-pointer hover:text-white" />
           </div>
         </div>
@@ -197,7 +200,7 @@ const ServiceNode = ({ data, selected }: NodeProps) => {
         </div>
       </div>
 
-      <Handle type="source" position={Position.Bottom} className="w-3 h-3 !bg-blue-500" />
+      <Handle type="source" position={Position.Bottom} className={`w-3 h-3 ${isDatabase ? '!bg-emerald-500' : '!bg-blue-500'}`} />
     </div>
   );
 };
